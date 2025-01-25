@@ -966,6 +966,44 @@ namespace Utils
 #endif
 		}
 
+		bool isKorean(const char* _string)
+		{
+			if (!_string)
+				return false;
+
+			size_t len = strlen(_string);
+			if (len < 3)
+				return false;
+
+			const char* target = _string;
+			if (len > 3)
+				target = _string + len - 3;
+
+			size_t cursor = 0;
+			unsigned int uni = chars2Unicode(std::string(target, 3), cursor);
+
+			return (uni >= 0x3131 && uni <= 0x3163) || // Unicode range for Hangul consonants and vowels (¤¡ to ¤Ó)
+				(uni >= 0xAC00 && uni <= 0xD7A3);  // Unicode range for Hangul syllables (°¡ to ÆR)
+		} // isKorean
+
+		KoreanCharType getKoreanCharType(const char* _string)
+		{
+			if (!_string || strlen(_string) != 3)
+				return KoreanCharType::NONE;
+
+			size_t cursor = 0;
+			unsigned int uni = chars2Unicode(std::string(_string), cursor);
+
+			if (uni >= 0x3131 && uni <= 0x314E)
+				return KoreanCharType::JAEUM;
+
+			if (uni >= 0x314F && uni <= 0x3163)
+				return KoreanCharType::MOEUM;
+
+			return KoreanCharType::NONE;
+
+		} // getKoreanCharType
+
 #if defined(_WIN32)
 		const std::string convertFromWideString(const std::wstring wstring)
 		{
