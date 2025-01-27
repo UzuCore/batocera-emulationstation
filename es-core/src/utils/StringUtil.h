@@ -61,6 +61,7 @@ namespace Utils
 			JAEUM = 1,
 			MOEUM = 2,
 		};
+		bool           isKorean(const unsigned int uni);
 		bool           isKorean(const char* _string);
 		KoreanCharType getKoreanCharType(const char* _string);
 
