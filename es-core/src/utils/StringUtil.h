@@ -55,6 +55,16 @@ namespace Utils
 		int			occurs(const std::string& str, char target);
 		bool		isPrintableChar(char c);
 
+		enum KoreanCharType : unsigned int
+		{
+			NONE = 0,
+			JAEUM = 1,
+			MOEUM = 2,
+		};
+		bool           isKorean(const unsigned int uni);
+		bool           isKorean(const char* _string);
+		KoreanCharType getKoreanCharType(const char* _string);
+
 #if defined(_WIN32)
 		const std::string convertFromWideString(const std::wstring wstring);
 		const std::wstring convertToWideString(const std::string string);

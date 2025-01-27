@@ -311,6 +311,11 @@ FT_Face Font::getFaceForChar(unsigned int id)
 			// otherwise, take from fallbackFonts
 			const std::string& path = (i == 0 ? mPath : fallbackFonts.at(i - 1));
 
+			// i == 2 -> DroidSansFallbackFull
+			// this font has a bug when handling Korean characters.
+			if (i == 2 && Utils::String::isKorean(id))
+				continue;
+
 #if defined(WIN32) || defined(X86) || defined(X86_64)
 			auto itCache = globalTTFCache.find(path);
 			if (itCache == globalTTFCache.cend())
