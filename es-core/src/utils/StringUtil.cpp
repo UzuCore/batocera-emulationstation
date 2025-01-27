@@ -968,8 +968,8 @@ namespace Utils
 
 		bool isKorean(const unsigned int uni)
 		{
-			return (uni >= 0x3131 && uni <= 0x3163) ||  // Unicode range for Hangul consonants and vowels (¤¡ to ¤Ó)
-				(uni >= 0xAC00 && uni <= 0xD7A3);       // Unicode range for Hangul syllables (°¡ to ÆR)
+			return (uni >= 0x3131 && uni <= 0x3163) ||  // Unicode range for Hangul consonants and vowels (ã„± to ã…£)
+				(uni >= 0xAC00 && uni <= 0xD7A3);       // Unicode range for Hangul syllables (ê°€ to íž£)
 		}
 
 		bool isKorean(const char* _string)
